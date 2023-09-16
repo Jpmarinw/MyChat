@@ -24,8 +24,8 @@ public class MensagemController {
 
     @GetMapping("/receber/{id}")
     public ResponseEntity<List<Mensagem>> receberMensagens(@RequestParam Long receptorId) {
-        // Você pode passar o ID do receptor como parâmetro na URL ou da maneira que preferir.
-        Contato receptor = new Contato(); // Você precisa encontrar o Contato com base no ID fornecido.
+        
+        Contato receptor = new Contato(); 
         List<Mensagem> mensagens = mensagemService.receberMensagens(receptor);
         return ResponseEntity.ok(mensagens);
     }
