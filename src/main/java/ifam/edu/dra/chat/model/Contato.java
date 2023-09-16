@@ -93,6 +93,14 @@ public class Contato {
 		this.cidade = cidade;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getEstado() {
 		return estado;
 	}

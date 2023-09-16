@@ -2,44 +2,50 @@ package ifam.edu.dra.chat.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ifam.edu.dra.chat.model.Contato;
+import ifam.edu.dra.chat.repository.ContatoRepository;
 
 @Service
-
 public class ContatoService {
 	
-	List<Contato> contatos = new ArrayList<>();
+	@Autowired
+	ContatoRepository contatoRepository;
 	
 	public List<Contato> getContatos(){
 		
-		return contatos;
+		return contatoRepository.findAll();
 		
 	}
 	
-	public Contato getContato(int id) {
-		
-		return contatos.get(id);
+	public Contato getContato(Long id) {
+		Optional<Contato> optionalContato = contatoRepository.findById(id);
+		if(optionalContato.isPresent())
+			return optionalContato.get();
+		return new Contato();
 		
 	}
 	
 	public Contato setContato(Contato contato) {
-		contatos.add(contato);
-		return contato;
+		return contatoRepository.save(contato);
 	}
 	
-	public Contato setContato(int id, Contato contato) {
-		
-		contatos.set(id, contato);
-		
-		return contato;
+	public Contato setContato(Long id, Contato contato) {
+		Optional<Contato> optionalContato = contatoRepository.findById(id);
+		if(optionalContato.isPresent())
+			contato.setId(id);		
+		return contatoRepository.save(contato);
 		
 	}
 	
-	public void deleteContato(int id) {
-		contatos.remove(id);
+	public void deleteContato(Long id) {
+		Optional<Contato> optionalContato = contatoRepository.findById(id);
+		if(optionalContato.isPresent())
+		contatoRepository.deleteById(id);
 	}
 
 }
