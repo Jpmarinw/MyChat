@@ -23,4 +23,3 @@ public class MensagemService {
         return mensagemRepository.findAllByReceptor(receptor);
     }
 }
-
