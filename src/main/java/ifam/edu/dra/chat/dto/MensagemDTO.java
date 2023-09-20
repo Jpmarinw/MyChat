@@ -9,8 +9,6 @@ public class MensagemDTO {
     private Long emissor;
     private Long receptor;
 
-    // Construtores, getters e setters
-
     public MensagemDTO() {
     }
 
@@ -21,8 +19,6 @@ public class MensagemDTO {
         this.emissor = emissor;
         this.receptor = receptor;
     }
-
-    // Getters e setters
 
     public Long getId() {
         return id;

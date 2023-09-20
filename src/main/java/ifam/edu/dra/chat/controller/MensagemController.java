@@ -8,6 +8,7 @@ import ifam.edu.dra.chat.model.Contato;
 import ifam.edu.dra.chat.model.Mensagem;
 import ifam.edu.dra.chat.service.MensagemService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,6 @@ public class MensagemController {
 
     @PostMapping("/enviar")
     public ResponseEntity<MensagemDTO> enviarMensagem(@RequestBody MensagemDTO mensagemDTO) {
-        // Crie um objeto Mensagem a partir do DTO (você precisa converter os IDs em Contatos reais)
         Mensagem mensagem = new Mensagem();
         mensagem.setDataHora(mensagemDTO.getDataHora());
         mensagem.setConteudo(mensagemDTO.getConteudo());
@@ -32,10 +32,8 @@ public class MensagemController {
         receptor.setId(mensagemDTO.getReceptor());
         mensagem.setReceptor(receptor);
 
-        // Envie a mensagem e converta a resposta para DTO
         Mensagem mensagemEnviada = mensagemService.enviarMensagem(mensagem);
 
-        // Converta a resposta para DTO
         MensagemDTO mensagemEnviadaDTO = new MensagemDTO(
                 mensagemEnviada.getId(),
                 mensagemEnviada.getDataHora(),
@@ -46,6 +44,25 @@ public class MensagemController {
 
         return ResponseEntity.ok(mensagemEnviadaDTO);
     }
+    
+    @GetMapping("/receber/{id}")
+    public ResponseEntity<List<MensagemDTO>> receberMensagensEnviadas(@PathVariable Contato id) {
+       
+        List<Mensagem> mensagensEnviadas = mensagemService.receberMensagens(id);
 
-    // Métodos para receber mensagens (você pode implementar de acordo com suas necessidades)
+        List<MensagemDTO> mensagemDTOs = new ArrayList<>();
+        for (Mensagem mensagem : mensagensEnviadas) {
+            MensagemDTO mensagemDTO = new MensagemDTO(
+                mensagem.getId(),
+                mensagem.getDataHora(),
+                mensagem.getConteudo(),
+                mensagem.getEmissor().getId(),
+                mensagem.getReceptor().getId()
+            );
+            mensagemDTOs.add(mensagemDTO);
+        }
+        return ResponseEntity.ok(mensagemDTOs);
+    }
 }
+
+

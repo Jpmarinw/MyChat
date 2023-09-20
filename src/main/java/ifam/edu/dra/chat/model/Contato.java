@@ -8,17 +8,17 @@ import javax.persistence.Id;
 @Entity
 public class Contato {
 	
-	/*
-	 {
-    "nome": "João Pedro",
-    "email": "jp@ifam.com",
-    "telefone": "(92) 99999-0000",
-    "endereco": "Rua da tua prima, 07",
-    "bairro": "Centro",
-    "cidade": "Manaus",
-    "estado": "AM"
-	}
-	  */
+	
+//	 {
+//    "nome": "João Pedro",
+//    "email": "jp@ifam.com",
+//    "telefone": "(92) 99999-0000",
+//    "endereco": "Rua 07, 07",
+//    "bairro": "Centro",
+//    "cidade": "Manaus",
+//    "estado": "AM"
+//	}
+	  
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

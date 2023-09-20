@@ -13,10 +13,10 @@ public class Mensagem {
 	
 //	 {
 //	"id": 1,
-//   "datahora": "00:00" ,
-//   "conteudo": "Ola, me chamo Sr.Joao Pedro",
-//   "emissor": "João Pedro",
-//   "receptor": "Gabriel",
+//   "datahora": "2023-09-20" ,
+//   "conteudo": "Ooi",
+//   "emissor": 1,
+//   "receptor": 2
 //	}
 	
 	@Id
